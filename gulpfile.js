@@ -129,8 +129,17 @@ gulp.task('images', function() {
     }));
 
     return gulp.src('./src/assets/img/**/*')
-    .pipe(imagemin)
+    .pipe(imagemin({
+        progressive: true,
+        interlaced: true
+    }))
     .pipe(gulp.dest('./public/assets/img'));
+});
+
+
+gulp.task('fonts', ['move'], function () {
+  return gulp.src('./src/assets/fonts/**/*')
+    .pipe(gulp.dest('./public/assets/fonts'));
 });
 
 // Build the "dist" folder by running all of the above tasks
@@ -145,6 +154,15 @@ gulp.task('server', ['build'], function() {
         server: './public', port: PORT
     });
 });
+
+
+// gulp.task('bower', function () {
+//   gulp.src('./app/templates/_layout.twig')
+//     .pipe(wiredep({
+//
+//     }))
+//     .pipe(gulp.dest('./app/templates/'));
+// });
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default', ['build', 'server'], function() {
