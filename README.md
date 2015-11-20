@@ -3,6 +3,8 @@
 ## features
 
 - Installs latest version of Craft CMS
+- Installs Zurb Foundation 6 for sites
+- Installs Multi-environment config
 - Sass compilation and prefixing
 - Built-in BrowserSync server
 - For production builds:
@@ -22,7 +24,7 @@ Requires [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/)
 To manually set up the Craft, first download it with Git:
 
 ```bash
-git clone https://github.com/zurb/foundation-sites-template projectname
+git clone https://github.com/johanneslamers/craft-workflow projectname
 ```
 
 Then open the folder in your command line, and install the needed dependencies:
@@ -30,7 +32,9 @@ Then open the folder in your command line, and install the needed dependencies:
 ```bash
 cd projectname
 bash install.sh
+```
 
+```bash
 npm install
 bower install
 ```
