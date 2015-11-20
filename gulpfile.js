@@ -6,7 +6,6 @@ var rimraf      = require('rimraf');
 // var panini = require('panini');
 var sequence    = require('run-sequence');
 var sherpa      = require('style-sherpa');
-var imagemin    = require('gulp-imagemin'),
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -51,24 +50,24 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./public/assets'));
 });
 
-// Copy page templates into finished HTML files
+
 // gulp.task('pages', function() {
-//   gulp.src('./src/pages/**/*.{html,hbs,handlebars}')
-//     .pipe(panini({
-//       root: './src/pages/',
-//       layouts: './src/layouts/',
-//       partials: './src/partials/',
-//       data: './src/data/',
-//       helpers: './src/helpers/'
-//     }))
-//     .pipe(gulp.dest('./dist'));
+//   // gulp.src('./src/pages/**/*.{html,hbs,handlebars}')
+//   //   .pipe(panini({
+//   //     root: './src/pages/',
+//   //     layouts: './src/layouts/',
+//   //     partials: './src/partials/',
+//   //     data: './src/data/',
+//   //     helpers: './src/helpers/'
+//   //   }))
+//   //   .pipe(gulp.dest('./dist'));
 // });
 
-gulp.task('pages:reset', function(cb) {
-    // panini.refresh();
-    gulp.run('pages');
-    browser.reload();
-});
+// gulp.task('pages:reset', function(cb) {
+//     // panini.refresh();
+//     gulp.run('pages');
+//     browser.reload();
+// });
 
 // gulp.task('styleguide', function(cb) {
 //   sherpa('./src/styleguide/index.md', {
@@ -125,14 +124,12 @@ gulp.task('javascript', function() {
 // In production, the images are compressed
 gulp.task('images', function() {
     var imagemin = $.if(isProduction, $.imagemin({
-        progressive: true
+        progressive: true,
+        interlaced: true
     }));
 
     return gulp.src('./src/assets/img/**/*')
-    .pipe(imagemin({
-        progressive: true,
-        interlaced: true
-    }))
+    .pipe(imagemin)
     .pipe(gulp.dest('./public/assets/img'));
 });
 
@@ -167,8 +164,8 @@ gulp.task('server', ['build'], function() {
 // Build the site, run the server, and watch for file changes
 gulp.task('default', ['build', 'server'], function() {
     gulp.watch(PATHS.assets, ['copy', browser.reload]);
-    // gulp.watch(['./src/pages/**/*.html'], ['pages', browser.reload]);
-    // gulp.watch(['./src/{layouts,partials}/**/*.html'], ['pages:reset']);
+    gulp.watch(['./templates/*.twig'], [browser.reload]);
+    gulp.watch(['./templates/**/*.twig'], [browser.reload]);
     gulp.watch(['./src/assets/scss/**/*.scss'], ['sass', browser.reload]);
     gulp.watch(['./src/assets/js/**/*.js'], ['javascript', browser.reload]);
     gulp.watch(['./src/assets/img/**/*'], ['images', browser.reload]);
