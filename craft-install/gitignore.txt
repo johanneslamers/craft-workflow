@@ -16,19 +16,19 @@
 
 
 
-# CRAFT STORAGE STUFF
-# It's probably safe to ignore the following in the storage folders.
-# The rest of the items in the storage folder are up to us...
-# ------------------------------------------------------------
-
-
-
 # Craft Storage (cache) [http://buildwithcraft.com/help/craft-storage-gitignore]
 /storage/*
 !/storage/.gitignore
 !/storage/logo/*
 /db_backups/
 /db_backups/*
+
+
+# Private node modules
+# ----------------------------------------------------------------------
+node_modules
+npm-debug.log
+
 
 
 
