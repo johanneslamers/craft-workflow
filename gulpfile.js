@@ -142,6 +142,18 @@ gulp.task('fonts', ['move'], function () {
     .pipe(gulp.dest('./public/assets/fonts'));
 });
 
+
+
+gulp.task('bower', function () {
+  gulp.src('./templates/_layout/_layout.twig')
+    .pipe(wiredep({
+
+    }))
+    .pipe(gulp.dest('./templates/_layout/'));
+});
+
+
+
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
     // sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
@@ -156,13 +168,7 @@ gulp.task('server', ['build'], function() {
 });
 
 
-gulp.task('bower', function () {
-  gulp.src('./templates/_layout/_layout.twig')
-    .pipe(wiredep({
 
-    }))
-    .pipe(gulp.dest('./templates/'));
-});
 
 
 
