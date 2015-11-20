@@ -9,7 +9,6 @@ mv craft/templates templates
 mv craft/plugins plugins
 
 
-
 mkdir craft/config/local
 cp craft/config/db.php craft/config/local/db.php
 cp craft/config/general.php craft/config/local/general.php
@@ -28,15 +27,14 @@ cp craft-install/general.php craft/config/general.php
 cp craft-install/index.php public/index.php
 cp craft-install/gitignore.txt .gitignore
 cp craft-install/craftignore.txt .craftignore
+cp craft-install/htaccess.txt .htaccess
+
 
 mkdir db_backups
 mkdir db_backups/local
 mkdir db_backups/staging
 mkdir db_backups/production
 mkdir storage
-
-
-
 
 
 # chown -R www-data:www-data /
