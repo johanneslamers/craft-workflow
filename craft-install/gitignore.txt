@@ -12,7 +12,7 @@
 # IMAGE FOLDERS
 # Commented out for convenience. Probably worth excluding as repo gets larger.
 # ------------------------------------------------------------
-/public/assets/*
+# /public/assets/*
 
 
 
