@@ -22,6 +22,12 @@
 # ----------------------------------------------------------------------
 public/assets/uploads/*
 
+# Private node modules
+# ----------------------------------------------------------------------
+node_modules
+npm-debug.log
+
+
 
 # MISC FILES
 # https://github.com/github/gitignore/tree/master/Global
