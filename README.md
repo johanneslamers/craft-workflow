@@ -70,3 +70,5 @@ TODO
 -
 
 - Add clean function to gulpfile.js
+- Add gulp useref
+- Remove gulp 

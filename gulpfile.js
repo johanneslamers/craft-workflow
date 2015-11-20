@@ -5,7 +5,8 @@ var gulp        = require('gulp');
 var rimraf      = require('rimraf');
 var sequence    = require('run-sequence');
 var sherpa      = require('style-sherpa');
-var wiredep     = require('wiredep').stream;
+var gulp-if     = require('gulp-if'),
+var useref      = require('gulp-useref');
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -154,7 +155,7 @@ gulp.task('images', function() {
     var imagemin = $.imagemin({
         progressive: true,
         interlaced: true
-    }));
+    });
 
     return gulp.src('./src/assets/img/**/*')
     .pipe(imagemin)
@@ -169,9 +170,9 @@ gulp.task('fonts', ['move'], function () {
 
 
 
-gulp.task('bower', function () {
+gulp.task('useref', function () {
   gulp.src('./templates/_layout/_layout.twig')
-    .pipe(wiredep({
+    .pipe(useref({
 
     }))
     .pipe(gulp.dest('./templates/_layout/'));
@@ -182,7 +183,7 @@ gulp.task('bower', function () {
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
     // sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
-    sequence(['sass', 'javascript', 'javascript_foundation', 'images', 'fonts', 'copy', ],  done);
+    sequence(['sass', 'javascript', 'javascript_foundation', 'images', 'fonts', 'copy', 'useref' ],  done);
 });
 
 // Start a server with LiveReload to preview the site in
