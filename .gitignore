@@ -1,26 +1,12 @@
 
 # LOCAL CONFIG SETTINGS
 # Exclude local config files so we don't overwrite other local setups.
-# Leave example files that can be renamed to get setup
-# @TODO - consider excluding dev and live database files.
+# Leave example files that can be copied to get setup
 # ------------------------------------------------------------
-*/craft/config/local/
-/public/path.php
-
-
-
-# IMAGE FOLDERS
-# Commented out for convenience. Probably worth excluding as repo gets larger.
-# ------------------------------------------------------------
-/public/assets/*
-
-
-
-# CRAFT STORAGE STUFF
-# It's probably safe to ignore the following in the storage folders.
-# The rest of the items in the storage folder are up to us...
-# ------------------------------------------------------------
-
+/craft/config/local/*
+/craft/config/local/
+!/craft/config/local/db.php.example
+!/craft/config/local/general.php.example
 
 
 # Craft Storage (cache) [http://buildwithcraft.com/help/craft-storage-gitignore]
@@ -29,7 +15,12 @@
 !/storage/logo/*
 /db_backups/
 /db_backups/*
+/public/path.php
 
+
+# Uploaded files
+# ----------------------------------------------------------------------
+public/assets/uploads/*
 
 
 # MISC FILES
@@ -55,7 +46,7 @@ Thumbs.db
 .Trashes
 config.codekit
 .codekit-cache
-db_backups
+
 
 
 #bower_components
