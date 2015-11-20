@@ -3,9 +3,9 @@ var argv        = require('yargs').argv;
 var browser     = require('browser-sync');
 var gulp        = require('gulp');
 var rimraf      = require('rimraf');
-// var panini = require('panini');
 var sequence    = require('run-sequence');
 var sherpa      = require('style-sherpa');
+var wiredep     = require('wiredep').stream;
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -80,7 +80,7 @@ gulp.task('copy', function() {
 // In production, the CSS is compressed
 gulp.task('sass', function() {
     var uncss = $.if(isProduction, $.uncss({
-        html: ['src/**/*.html'],
+        html: ['./templates/*.twig', './templates/**/*.twig', './templates/*.html', './templates/**/*.html'],
         ignore: [
             new RegExp('^meta\..*'),
             new RegExp('^\.is-.*')
@@ -98,7 +98,10 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
         browsers: COMPATIBILITY
     }))
-    .pipe(uncss)
+
+
+    // uncomment this if you want to uncss
+    // .pipe(uncss)
     .pipe(minifycss)
     .pipe($.if(!isProduction, $.sourcemaps.write()))
     .pipe(gulp.dest('./public/assets/css'));
@@ -135,14 +138,14 @@ gulp.task('images', function() {
 
 
 gulp.task('fonts', ['move'], function () {
-  return gulp.src('./src/assets/fonts/**/*')
+    return gulp.src('./src/assets/fonts/**/*')
     .pipe(gulp.dest('./public/assets/fonts'));
 });
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
     // sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
-    sequence(['sass', 'javascript', 'images', 'copy'],  done);
+    sequence(['sass', 'javascript', 'images', 'fonts', 'copy', ],  done);
 });
 
 // Start a server with LiveReload to preview the site in
@@ -151,6 +154,17 @@ gulp.task('server', ['build'], function() {
         server: './public', port: PORT
     });
 });
+
+
+gulp.task('bower', function () {
+  gulp.src('./templates/_layout/_layout.twig')
+    .pipe(wiredep({
+
+    }))
+    .pipe(gulp.dest('./templates/'));
+});
+
+
 
 
 // gulp.task('bower', function () {

@@ -13,6 +13,8 @@ Requires [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/)
   - CSS compression
   - JavaScript compression
   - Image compression
+  - UnCSS
+  - Browser prefixing
 
 - - -
 
@@ -62,3 +64,9 @@ Tasks
 
 * ```gulp bower``` Injects bower dependencies into ```_layout.html```. This task will run on ```gulp watch``` as well.
 _Remember to ```--save``` when installing components_.
+
+
+TODO
+-
+
+- Add clean function to gulpfile.js

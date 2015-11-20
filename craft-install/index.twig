@@ -1,0 +1,21 @@
+{% extends "_layout/_layout" %}
+
+{% set pageTitle = entry.title %}
+{% set metaDescription = entry.metaDescription %}
+{% set pageImage = "" %}
+
+
+{% if entry is not defined %}
+  {% exit 404 %}
+{% endif %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% set file %}
+{% endset %}
+
+{% includeJsFile file %}

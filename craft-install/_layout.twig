@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		{% if craft.config.devMode %}DEV MODE - {% endif %}
+		{{ pageTitle ?: craft.request.lastSegment()|replace({'-':' '})|title }} - {{ siteName }}
+	</title>
+
+	<meta name="description" content="{{ metaDescription ?: '' }}"/>
+	{% if craft.config.devMode %}
+        <meta name="robots" content="noindex"/>
+    {% endif %}
+
+	<meta property="og:url"            content="{{ craft.request.getUrl() }}"/>
+	<meta property="og:site_name"      content="{{ siteName }}"/>
+	<meta property="og:title"          content="{{ pageTitle ?: craft.request.lastSegment()|replace({'-':' '})|title }}"/>
+	<meta property="og:image"          content="{{ pageImage ?: '/assets/images/og-image.png' }}"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	{% filter minimee %}
+        <!-- bower:css -->
+		<link rel="stylesheet" href="{{ siteUrl }}assets/css/app.css" >
+        <!-- endbower -->
+	{% endfilter %}
+
+
+
+	{{ getHeadHtml() | minimee }}
+
+</head>
+
+{% if craft.config.devMode %}
+    {% set bodyClass = "devMode" %}
+{% endif %}
+
+<body class="{{ bodyClass }}">
+
+	{% if craft.config.devMode %}
+	  	<div id="devmode" title="Craft draait in de ontwikkelaars-modus."></div>
+	{% endif %}
+
+	{% for type, message in craft.session.flashes %}
+		<div class="flash {{ type }}">{{ message }}</div>
+	{% endfor %}
+
+
+	{% block content %}
+
+	{% endblock %}
+
+
+	{% filter minimee %}
+        <!-- bower:js -->
+		<script src="{{ siteUrl }}assets/js/app.js"></script>
+        <!-- endbower -->
+	{% endfilter %}
+
+	{{ getFootHtml() | minimee }}
+</body>
+</html>

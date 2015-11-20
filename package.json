@@ -22,11 +22,12 @@
     "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
-    "gulp-uncss": "^1.0.1",
+    "gulp-uncss": "^1.0.4",
     "rimraf": "^2.4.3",
     "run-sequence": "^1.1.0",
     "style-sherpa": "^1.0.0",
-    "yargs": "^3.8.0"
+    "yargs": "^3.8.0",
+    "wiredep": "^2.2.2"
   },
   "private": true
 }

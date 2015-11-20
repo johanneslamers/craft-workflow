@@ -19,15 +19,20 @@ rm craft/config/db.php
 rm craft/config/general.php
 rm public/index.php
 rm -fr craft/storage
-# rm .gitignore
+rm -fr templates
+rm .gitignore
 
+
+mkdir templates
+mkdir templates/_layout
 
 cp craft-install/db.php craft/config/db.php
 cp craft-install/general.php craft/config/general.php
 cp craft-install/index.php public/index.php
 cp craft-install/gitignore.txt .gitignore
 cp craft-install/craftignore.txt .craftignore
-cp craft-install/htaccess.txt .htaccess
+cp craft-install/index.twig templates/index.twig
+cp craft-install/_layout.twig templates/_layout/_layout.twig
 
 
 mkdir db_backups
@@ -47,5 +52,5 @@ chmod 777 storage
 
 
 
-# rm -rf craft-install
-# rm -rf install.sh
+rm -rf craft-install
+rm -rf install.sh
