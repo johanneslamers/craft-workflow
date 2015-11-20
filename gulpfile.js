@@ -151,7 +151,7 @@ gulp.task('javascript', function() {
 // Copy images to the "dist" folder
 // In production, the images are compressed
 gulp.task('images', function() {
-    var imagemin = $.if(isProduction, $.imagemin({
+    var imagemin = $.imagemin({
         progressive: true,
         interlaced: true
     }));
