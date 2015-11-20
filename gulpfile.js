@@ -26,14 +26,22 @@ var PATHS = {
         'bower_components/foundation-sites/scss',
         'bower_components/motion-ui/src/'
     ],
+
+    // All JavaScript files in the src/assets/js folder, along with Foundation and its dependencies, are bundled into one file called app.js. The files are bundled in this order:
+
     javascript: [
-        'bower_components/jquery/dist/jquery.js',
         'bower_components/what-input/what-input.js',
+        'src/assets/js/**/*.js',
+        'src/assets/js/app.js'
+    ],
+
+    javascript_foundation: [
+        'bower_components/jquery/dist/jquery.js',
+
         'bower_components/foundation-sites/js/foundation.core.js',
         'bower_components/foundation-sites/js/foundation.util.*.js',
         'bower_components/foundation-sites/js/foundation.*.js',
-        'src/assets/js/**/*.js',
-        'src/assets/js/app.js'
+
     ]
 };
 
@@ -107,6 +115,23 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./public/assets/css'));
 });
 
+
+// Combine JavaScript into one file
+// In production, the file is minified
+gulp.task('javascript_foundation', function() {
+    var uglify = $.if(isProduction, $.uglify()
+    .on('error', function (e) {
+        console.log(e);
+    }));
+
+    return gulp.src(PATHS.javascript_foundation)
+    .pipe($.sourcemaps.init())
+    .pipe($.concat('foundation.js'))
+    .pipe(uglify)
+    .pipe($.if(!isProduction, $.sourcemaps.write()))
+    .pipe(gulp.dest('./public/assets/js'));
+});
+
 // Combine JavaScript into one file
 // In production, the file is minified
 gulp.task('javascript', function() {
@@ -157,7 +182,7 @@ gulp.task('bower', function () {
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
     // sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
-    sequence(['sass', 'javascript', 'images', 'fonts', 'copy', ],  done);
+    sequence(['sass', 'javascript', 'javascript_foundation', 'images', 'fonts', 'copy', ],  done);
 });
 
 // Start a server with LiveReload to preview the site in
