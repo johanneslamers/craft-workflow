@@ -1,5 +1,5 @@
 {
-  "name": "Craft CMS Basic install",
+  "name": "craft-install-gulp-workflow",
   "version": "1.0.0",
   "description": "Needs some work",
   "main": "gulpfile.js",
