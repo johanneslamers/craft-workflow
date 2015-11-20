@@ -1,8 +1,10 @@
 # Craft CMS Local install and Gulp workflow
 
-## features
+Requires [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/)
 
-- Installs latest version of Craft CMS
+## Features
+
+- Installs latest version of [Craft CMS](http://buildwithcraft.com)
 - Installs Zurb Foundation 6 for sites
 - Installs Multi-environment config
 - Sass compilation and prefixing
@@ -14,14 +16,13 @@
 
 - - -
 
-Requires [Nodejs](http://nodejs.org/) and [Gulp](http://gulpjs.com/)
-
-
-### Manual Setup
 
 
 
-To manually set up the Craft, first download it with Git:
+Manual Setup
+-
+
+To set up a Craft CMS site, first download it with Git:
 
 ```bash
 git clone https://github.com/johanneslamers/craft-workflow projectname
@@ -39,20 +40,20 @@ npm install
 bower install
 ```
 
-Finally, run `**npm start**` to run Gulp. Your finished site will be created in a folder called `public`, viewable at this URL:
+Finally, run **`npm start`** to run Gulp. Your finished site will be created in a folder called `public`, viewable at this URL:
 
 ```
 http://localhost:8000
 ```
 
 To create compressed, production-ready assets, run
+
 **`npm run build`**
 
 
 Tasks
 -
 
-_note: Don't touch the templates folder in ```/craft``` it will be overwritten on build. Work on the ones in ```app/templates```_
 
 * ```gulp watch``` to start the watch task, at the moment you will have to use a browser extention for live reload.
 
