@@ -3,6 +3,18 @@
   "version": "1.0.0",
   "description": "Needs some work",
   "main": "gulpfile.js",
+  "keywords": [
+    "web",
+    "development",
+    "craft cms",
+    "gulp",
+    "apps",
+    "application",
+    "mobile",
+    "tablet",
+    "desktop",
+    "website"
+  ],
   "scripts": {
     "start": "gulp",
     "build": "gulp build --production"
