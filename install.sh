@@ -29,6 +29,8 @@ mkdir templates/_layout
 cp craft-install/db.php craft/config/db.php
 cp craft-install/general.php craft/config/general.php
 cp craft-install/index.php public/index.php
+cp craft-install/public_index.html public/index.html
+cp craft-install/htaccess.txt .htaccess
 cp craft-install/gitignore.txt .gitignore
 cp craft-install/craftignore.txt .craftignore
 cp craft-install/index.twig templates/index.twig
