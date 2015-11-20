@@ -23,9 +23,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
 	{% filter minimee %}
-        <!-- bower:css -->
+
+
 		<link rel="stylesheet" href="{{ siteUrl }}assets/css/app.css" >
-        <!-- endbower -->
 	{% endfilter %}
 
 
@@ -55,9 +55,11 @@
 
 
 	{% filter minimee %}
-        <!-- bower:js -->
-		<script src="{{ siteUrl }}assets/js/app.js"></script>
-        <!-- endbower -->
+
+        <script src="../../bower_components/jquery/dist/jquery.js"></script>
+        <script src="{{ siteUrl }}assets/js/foundation.js"></script>
+        <script src="{{ siteUrl }}assets/js/app.js"></script>
+
 	{% endfilter %}
 
 	{{ getFootHtml() | minimee }}
