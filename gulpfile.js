@@ -7,6 +7,7 @@ var sequence    = require('run-sequence');
 var sherpa      = require('style-sherpa');
 var gulp-if     = require('gulp-if'),
 var useref      = require('gulp-useref');
+var wierdep     = require('wiredep').stream;
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -38,7 +39,6 @@ var PATHS = {
 
     javascript_foundation: [
         'bower_components/jquery/dist/jquery.js',
-
         'bower_components/foundation-sites/js/foundation.core.js',
         'bower_components/foundation-sites/js/foundation.util.*.js',
         'bower_components/foundation-sites/js/foundation.*.js',
@@ -169,21 +169,29 @@ gulp.task('fonts', ['move'], function () {
 });
 
 
-
-gulp.task('useref', function () {
-  gulp.src('./templates/_layout/_layout.twig')
-    .pipe(useref({
-
+gulp.task('wiredep', function() {
+    return gulp.src('/templates/_layout/_layout.twig')
+    .pipe(wiredep({
+        exclude: [foundation-sites],
+        exclude: [modernizr]
     }))
-    .pipe(gulp.dest('./templates/_layout/'));
+    .pipe(gulp.dest('templates/_layout/'));
 });
+
+// gulp.task('useref', function () {
+//   gulp.src('./templates/_layout/_layout.twig')
+//     .pipe(useref({
+//
+//     }))
+//     .pipe(gulp.dest('./templates/_layout/'));
+// });
 
 
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
     // sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
-    sequence(['sass', 'javascript', 'javascript_foundation', 'images', 'fonts', 'copy', 'useref' ],  done);
+    sequence(['sass', 'javascript', 'javascript_foundation', 'images', 'fonts', 'copy' ],  done);
 });
 
 // Start a server with LiveReload to preview the site in
